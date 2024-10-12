@@ -1,8 +1,10 @@
 import pickle
 
 # Load the pre-trained model
-with open('/workspaces/mlops-churn-prediction/models/churn_model.pkl', 'rb') as model_file:
-    model = pickle.load(model_file)
+# with open('/workspaces/mlops-churn-prediction/models/churn_model.pkl', 'rb') as model_file:
+#     model = pickle.load(model_file)
+
+model = pickle.load(open('/workspaces/mlops-churn-prediction/models/churn_model.pkl','rb'))
 
 # Interactive user input
 print("Enter the following customer details to get a churn prediction:")
