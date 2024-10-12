@@ -1,7 +1,7 @@
 import pickle
 
 # Load the pre-trained model
-with open('models/churn_model.pkl', 'rb') as model_file:
+with open('/workspaces/mlops-churn-prediction/models/Pre-trained_BankingCustomerChurnPrediction.pkl', 'rb') as model_file:
     model = pickle.load(model_file)
 
 # Interactive user input
