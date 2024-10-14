@@ -1,25 +1,26 @@
+import os
 import pickle
 
-# Load the pre-trained model
-# with open('/workspaces/mlops-churn-prediction/models/churn_model.pkl', 'rb') as model_file:
-#     model = pickle.load(model_file)
+def load_model():
+    model_path = os.path.join('models', 'churn_model.pkl')
+    with open(model_path, 'rb') as model_file:
+        model = pickle.load(model_file)
+    return model
 
-model = pickle.load(open('/workspaces/mlops-churn-prediction/models/churn_model.pkl','rb'))
+def get_customer_input():
+    credit_score = float(input("Enter credit score: "))
+    age = int(input("Enter age: "))
+    balance = float(input("Enter balance: "))
+    number_of_products = int(input("Enter number of products: "))
+    # Add other fields as necessary
+    return [[credit_score, age, balance, number_of_products]]
 
-# Interactive user input
-print("Enter the following customer details to get a churn prediction:")
-credit_score = float(input("Credit Score: "))
-age = float(input("Age: "))
-balance = float(input("Balance: "))
-products_number = int(input("Number of Products: "))
-has_credit_card = int(input("Has Credit Card (1 for Yes, 0 for No): "))
-is_active_member = int(input("Is Active Member (1 for Yes, 0 for No): "))
-estimated_salary = float(input("Estimated Salary: "))
+def predict_churn(model, customer_data):
+    prediction = model.predict(customer_data)
+    return prediction[0]
 
-# Model prediction
-features = [[credit_score, age, balance, products_number, has_credit_card, is_active_member, estimated_salary]]
-prediction = model.predict(features)
-
-# Output the result
-result = "Churn" if prediction[0] == 1 else "No Churn"
-print(f"Prediction: {result}")
+if __name__ == "__main__":
+    model = load_model()
+    customer_data = get_customer_input()
+    result = predict_churn(model, customer_data)
+    print("Churn Prediction:", "Will Churn" if result == 1 else "Will Not Churn")
