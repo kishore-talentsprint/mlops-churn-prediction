@@ -2,7 +2,7 @@ import os
 import pickle
 
 def load_model():
-    model_path = os.path.join('models', 'churn_model.pkl')
+    model_path = '/workspaces/mlops-churn-prediction/models/churn_model.pkl' #os.path.join('models', 'churn_model.pkl')
     with open(model_path, 'rb') as model_file:
         model = pickle.load(model_file)
     return model
