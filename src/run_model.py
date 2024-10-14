@@ -1,8 +1,15 @@
 import os
 import pickle
+import sys
+from pathlib import Path
+
+file = Path(__file__).resolve()
+parent, root = file.parent, file.parents[1]
+sys.path.append(str(root))
 
 def load_model():
-    model_path = '/workspaces/mlops-churn-prediction/models/churn_model.pkl' 
+    
+    model_path = '/models/churn_model.pkl' 
     with open(model_path, 'rb') as model_file:
         model = pickle.load(model_file)
     return model
