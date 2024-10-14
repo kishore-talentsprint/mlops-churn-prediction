@@ -10,14 +10,14 @@ In this challenge, you are tasked with deploying a pre-trained machine learning 
 
 ### Task 1: Load the Pre-Trained Model (5 Points)
 
-- Write a Python script (`load_model.py`) that loads the pre-trained model using `pickle`.
-- The script should load the model from the `models/` directory, where the pre-trained model (`churn_model.pkl`) is located.
+- Write a Python script (`load_model.py` in the src folder) that loads the pre-trained model using `pickle`.
+- The script should load the model from the `models/` directory, where the pre-trained model (`churn_model.pkl`) is located. Make sure that the path to the .pkl file is properly placed. 
 
 ---
 
 ### Task 2: Interactive Prediction (10 Points)
 
-- Write a Python script (`run_model.py`) that prompts the user for customer data (credit score, age, balance, number of products, etc.) and returns a prediction on whether the customer will churn.
+- Write a Python script (`run_model.py`) that prompts the user for customer data (credit score, age, balance, number of products, etc. (total of 8 values)) and returns a prediction on whether the customer will churn.
 - Use the pre-trained model to make predictions based on user inputs.
 
 ---
@@ -25,7 +25,7 @@ In this challenge, you are tasked with deploying a pre-trained machine learning 
 ### Task 3: Dockerize the Application (10 Points)
 
 - Create a `Dockerfile` that:
-  1. Uses a **Python 3.8** image.
+  1. Uses a **Python version 3.8 or more** image.
   2. Copies the necessary files (model, scripts, etc.) into the container.
   3. Installs the dependencies listed in `requirements.txt`.
   4. Runs the `run_model.py` script inside the container.
@@ -78,7 +78,7 @@ jobs:
 ---
 ### Task 5: Set Up Repository Structure (5 Points)
 
-Organize your project with the following structure:
+Organize your project with the following structure (Note that the directory has sub directories and files in it ):
 
 ```
 - models/              # Directory for storing the pre-trained model
@@ -97,10 +97,10 @@ Organize your project with the following structure:
 ## Submission Instructions
 
 - Submit all necessary files, including:
-  - Python scripts (`load_model.py`, `run_model.py`),
-  - Dockerfile,
+  - Python scripts (`load_model.py`, `run_model.py` in src directory),
+  - Dockerfile (in main),
   - CI/CD workflow file (`deploy.yml` in the `.github/workflows/` directory),
-  - Pre-trained model in the `models/` directory.
+  - Pre-trained model (in the `models/` directory).
 - Ensure that your repository is organized properly as shown in **Task 5**.
 - Test the Docker container locally and make sure the pipeline works end-to-end.
 
