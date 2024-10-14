@@ -1,4 +1,4 @@
-name: Run Model in Codespaces
+name: Build and Run Model
 
 on:
   push:
@@ -6,22 +6,26 @@ on:
       - main
 
 jobs:
-  run_model:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.8'
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'
 
-      - name: Install dependencies
-        run: |
-          pip install -r requirements.txt
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt
 
-      - name: Run Model
-        run: |
-          python src/run_model.py
+    - name: Build Docker image
+      run: |
+        docker build -t churn_model .
+
+    - name: Run Docker container
+      run: |
+        docker run churn_model
